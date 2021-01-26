@@ -6,14 +6,16 @@
 	
 	<!-- insert -->
 	<insert id="insertMember" parameterType="memberDTO">
-		insert into MEMBER values (#{id},#{passwd},#{name},#{jumim1},#{jumim2},#{email},#{blog},sysdate)
+		insert into MEMBER values (#{id},#{password},#{name},#{birthday},
+									#{department},#{job},#{join_date},#{join_date},
+									#{level},#{email})
 	</insert>
 
 	<!-- id/pw 맞는지 확인    //  아이디 중복확인 -->
 	<select id="userCheck" resultType="int" parameterType="memberDTO">
 		select count(*) from MEMBER where id=#{id} 
-		<if test="passwd != null">
-			and passwd = #{passwd}
+		<if test="password != null">
+			and password = #{password}
 		</if>
 	</select>
 
@@ -24,17 +26,17 @@
 	<update id="updateMember" parameterType="memberDTO">
 		update MEMBER 
 		<set>
-		<if test="passwd != null">passwd=#{passwd},</if>
+		<if test="passwd != null">password=#{password},</if>
 		<if test="name != null">name=#{name},</if>
 		<if test="email != null">email=#{email},</if>
-		<if test="blog != null">blog=#{blog}</if>
+		<if test="job != null">job=#{job}</if>
 		</set>
 		where id=#{id}
 	</update>
-	
+	<!-- 
 	<delete id="deleteMember" parameterType="String"> 
 		delete from MEMBER where id=#{value}
-	</delete>
+	</delete> -->
 
 </mapper>
 

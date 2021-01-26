@@ -14,7 +14,6 @@
 		<property name="order" value="0" />
 	</bean>
 
-	<bean id="download" class="spring.model.DownloadView" />
 
 
 	<!-- spring intercepror - fileUpload -->
@@ -35,8 +34,7 @@
 	<!-- @Cotroller , @Service, @Repository bean 객체로 자동 등록된다. -->
 
 
-	<context:component-scan
-		base-package="spring.model" />
+	
 
 
 </beans>

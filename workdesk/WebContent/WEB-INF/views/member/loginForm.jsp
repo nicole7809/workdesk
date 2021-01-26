@@ -1,150 +1,73 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
-%>
 <!DOCTYPE html>
-<html lang="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>로그인 </title>
+	<title>로그인</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 引入bootstrap -->
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/css/bootstrap.min.css">
+	<!-- 引入JQuery  bootstrap.js-->
+	<script src="<%=request.getContextPath()%>/resource/script/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resource/script/bootstrap.min.js"></script>
+	<style type="text/css">
+	body{
+	   background: url(<%=request.getContextPath()%>/resource/etc/images/a.jpg)repeat;
+	}
+	#login-box {
+		/*border:1px solid #F00;*/
+		padding: 35px;
+		border-radius:15px;
+		background: #56666B;
+		color: #fff;
+	}
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="resource/script/jquery-3.1.1.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="resource/script/bootstrap.min.js"></script>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <script>
-        $(function () {
-            $("#account").blur(function () {
-                var id = $("#account").val();    //获取序号值
-                if (id == "" || id == null) {
-                    return false;
-                }
-                $.ajax({
-                    url: "user/checkLogin?account=" + id,
-                    type: "post",
-                    success: function (result) {
-                        if (result == "false") {
-                            $("#btn_login").attr({"disabled": "disabled"});
-                            $("#error_msg_num").html("您输入的账号看起来有些问题，请联系管理员");
-                            $("#error_msg_num").css("display", "inline");
-                        }
-                        if (result == "true") {
-                            $("#btn_login").removeAttr("disabled");
-                            $("#error_msg_num").html("");
-                            $("#error_msg_num").css("display", "none");
-                        }
-                    }
-                })
-
-            });
-            $("#btn_register").click(function () {
-                alert("暂时不开放注册");
-            });
-            $("#changeCode,#verifyCode").click(function () {
-                $("#verifyCode").attr('src', "code/verifyCode?" + Math.random());
-
-            });
-        })
-    </script>
-    <style>
-        body {
-            background: url(/images/3.jpg) no-repeat;
-            background-size: 100%;
-        }
-
-        .modal-content {
-            width: 400px;
-        }
-
-        .radio {
-            padding-top: 20px;
-        }
-
-        .form-group {
-            margin-left: auto;
-            margin-right: auto;
-
-        }
-
-    </style>
+	</style>
 </head>
 <body>
-
-<!--使用模态框的方式模拟一个登陆框-->
-<div class="modal show " id="loginModal">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close">×</button>
-                <h1 class="text-center text-primary">登录</h1>
-            </div>
-            <div class="modal-body">
-                <form class="form col-md-15 center-block" id="loginForm" action="/login.action" method="post">
-                    <div class="form-group-lg" id="accountDiv">
-                        <label class="sr-only" for="account">账号</label>
-                        <div class="input-group col-xs-15">
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"
-                                                                 aria-hidden="true"></span></div>
-                            <input class="form-control" id="account" name="account" type="text" placeholder="账号"
-                                   required autofocus>
-                        </div>
-                        <div class="hidden text-center" id="accountMsg"><span
-                                class="glyphicon glyphicon-exclamation-sign"></span>用户名不存在
-                        </div>
-                    </div>
-                    <span id="error_msg_num"
-                          style="display: none;color: #0066cc;font-weight: bold;font-size: 19px"></span>
-                    <br>
-                    <div class="form-group-lg" id="pwdDiv">
-                        <label class="sr-only" for="password">密码</label>
-                        <div class="input-group col-xs-15">
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                            <input class="form-control" id="password" name="password" type="password" placeholder="密码"
-                                   required>
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></div>
-                        </div>
-                        <div class="hidden text-center" id="pwdMsg"><span
-                                class="glyphicon glyphicon-exclamation-sign"></span>用户名密码错误
-                        </div>
-                    </div>
-
-                    <div class="form-group-lg" id="code">
-                        <label class="sr-only" for="checkCode">验证码</label>
-                        <div class="input-group col-xs-15">
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                            <input class="form-control" id="checkCode" name="checkCode" type="text" placeholder="验证码"
-                                   required>
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></div>
-                        </div>
-                    </div>
-                    <img id="verifyCode" src="code/verifyCode"/>
-                    <label><a href="#" id="changeCode">换一张</a></label>
-                    <span id="error_msg_password"
-                          style="color: #0066cc;font-weight: bold;font-size: 19px">${error}</span>
-
-
-                    <div class="form-group">
-
-                        <button class="btn btn-default btn-lg col-md-4" id="btn_register" type="">注册</button>
-                        <button class="btn btn-primary btn-lg col-md-4" id="btn_login" type="submit">登录</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /container -->
-
-
+	<div class="container" id="top">
+		<p style="font-size: xx-large;flood-color: #2b569a;margin-top: 150px;" class="text-center">근태 시스템 로그인</p>
+		<div class="row" style="margin-top: 20px; ">
+			<div class="col-md-4"></div>
+			<div class="col-md-4" id="login-box">
+				<form class="form-horizontal" role="form" action="<%=request.getContextPath()%>/member/loginPro.do" id="from1" method="post">
+				  <div class="form-group">
+				    <label for="staffId" class="col-sm-3 control-label">아이디</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="staffId" placeholder="ID입력 하세요~!" name="id">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="password" class="col-sm-3 control-label">비밀번호</label>
+				    <div class="col-sm-9">
+				      <input type="password" class="form-control" id="password" placeholder="비밀번호 입력하세요~!" name="password">
+				    </div>
+				  </div>
+				  <%--<div class="form-group">--%>
+				    <%--<div class="col-sm-offset-2 col-sm-10">--%>
+				      <%--<div class="checkbox">--%>
+				        <%--<label class="checkbox-inline">--%>
+							<%--<input type="radio" name="role" value="1" checked>관리자--%>
+						<%--</label>--%>
+						<%--<label class="checkbox-inline">--%>
+							<%--<input type="radio" name="role" value="2">강사--%>
+						<%--</label>--%>
+						<%--<label class="checkbox-inline">--%>
+							<%--<input type="radio" name="role" value="3">학생--%>
+						<%--</label>--%>
+				      <%--</div>--%>
+				    <%--</div>--%>
+				  <%--</div>--%>
+				  <div class="form-group pull-right" style="margin-right: 15px;">
+				    <div class="col-sm-offset-2 col-sm-10">
+				      <button type="submit" class="btn btn-default btn-info">로그인</button>
+				    </div>
+				  </div>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>		
+	</div>
 </body>
 </html>

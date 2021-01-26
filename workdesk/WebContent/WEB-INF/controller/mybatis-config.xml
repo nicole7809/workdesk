@@ -19,14 +19,11 @@
 -->
 
 	<typeAliases>
-		<typeAlias alias="fileDTO" type="spring.model.FileDTO"/>
-		<typeAlias alias="memberDTO" type="workdesk.model.LogonDataBean"/>
+		<typeAlias alias="memberDTO" type="workdesk.member.model.MemberDataBean"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="/sql/SQL.xml" />
+		<!-- <mapper resource="/sql/SQL.xml" /> -->
 		<mapper resource="/sql/memberSQL.xml" />
-		<mapper resource="/sql/boardSQL.xml" />
-		<mapper resource="/sql/testSQL.xml" />
 	</mappers>
 
 </configuration>

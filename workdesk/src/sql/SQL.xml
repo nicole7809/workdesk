@@ -8,7 +8,7 @@
 	<!-- sql query 작성 -->
 	
 	<!-- id컬럼 == orgname변수 -->
-	<resultMap id="dtoMap" type="fileDTO">
+	<!-- <resultMap id="dtoMap" type="fileDTO">
 		<result column="idkorea" property="id"/>
 	</resultMap>
 	
@@ -21,8 +21,8 @@
 		select * from fileList
 	</select>
 
-	<!-- id="태크이름"  resultType="sql실행결과 타입(dto / String / int)" -->
-	<!-- parameterType="DAO 에서 (?) 부분 의미한다." -->
+	id="태크이름"  resultType="sql실행결과 타입(dto / String / int)"
+	parameterType="DAO 에서 (?) 부분 의미한다."
 	<select id="selectOne" resultType="String" parameterType="int">
 		select id from fileList where num=#{value}
 	</select>
@@ -50,7 +50,7 @@
 
 	<update id="updateFile" parameterType="fileDTO">
 		update fileList set id=#{id}, orgname=#{orgname} where num=#{num}
-	</update>
+	</update> -->
 
 <!--  
 	<select id="selectId" parameterType="String">
