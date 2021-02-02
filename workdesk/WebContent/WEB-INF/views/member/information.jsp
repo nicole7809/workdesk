@@ -88,8 +88,7 @@
 								 	  <div  value="${c.level}"> ${d.department} </div>
 									</c:forEach>
 								</td>
-								
-					
+									
 								
 							<tr>
 								<td colspan="2" align="center">
