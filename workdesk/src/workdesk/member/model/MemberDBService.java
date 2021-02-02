@@ -1,5 +1,9 @@
 package workdesk.member.model;
 
+
+import java.util.List;
+
+
 public interface MemberDBService {
 
 	public void insertMember(MemberDataBean member) throws Exception;
@@ -13,10 +17,23 @@ public interface MemberDBService {
 	public void updateMember(MemberDataBean member) throws Exception;
 
 	public int deleteMember(MemberDataBean member) throws Exception;
-	
+
 	MemberDataBean finDataBeanId(String id) throws Exception;
 	
+	// 체크인
+	public void insertSignin(SignDataBean signin) throws Exception;
 
+	// 체크인 날짜 체크
+	public int signinCheck(SignDataBean signin) throws Exception;
 	
+    // 체크아웃
+	public void updateSignout(SignDataBean signout) throws Exception;
+
+	public List<SignDataBean> querySignDataBeanById(String id);
+
+	//public int towork(SignDataBean signin)throws Exception;
+
+	public List<MemberDataBean> memberAll();
+
 
 }

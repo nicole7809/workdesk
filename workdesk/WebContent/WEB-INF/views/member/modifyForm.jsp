@@ -50,8 +50,7 @@
 							<tr>
 								<td width="200">사용자 ID</td>
 								<td width="400">
-								<input type="id" name="id"
-									size="10" maxlength="10" value="${c.id}">
+									<input type="hidden" name="id" value="${c.id}" />
 								</td>
 							</tr>
 							<tr>
@@ -68,7 +67,7 @@
 							<tr>
 								<td width="200">생년월일</td>
 								<td width="400">
-								<input type="birthday" name="birthday"
+								<input type="date" name="birthday"
 									size="10" maxlength="10" value="${c.birthday}">
 								</td>
 							</tr>
@@ -76,12 +75,12 @@
 								<td width="200">이메일</td>
 								<td width="400">
 								<input type="email" name="email"
-									size="10" maxlength="10" value="${c.email}">
+									size="10" maxlength="50" value="${c.email}">
 								</td>
 							</tr>
 							<tr>
 								<td width="200">부석</td>
-								<td width="400">${department}</td>
+								<td width="400">${c.department}</td>
 							</tr>
 							<tr>
 								<td width="200">직책</td>
@@ -99,15 +98,7 @@
 							<tr>
 								<td width="200">등급</td>
 								<td width="400">${c.level}</td>
-							<tr>
-							
-
-							<tr>
-								<td width="200">비밀번호</td>
-								<td width="400">
-								<input type="password" name="password"
-									size="10" maxlength="10" value="${c.password}">
-								</td>
+								
 							<tr>
 							
 							<tr>

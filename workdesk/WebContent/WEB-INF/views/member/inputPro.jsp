@@ -3,5 +3,5 @@
 
 <script>
 	alert("가입 되었습니다~!!")
-	window.location = "/spring/member/loginForm.do";
+	window.location = "/workdesk/member/loginForm.do";
 </script>

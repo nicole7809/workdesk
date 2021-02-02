@@ -32,12 +32,10 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="row">
-							<c:if test="${sessionScope.memId != null}">
-								<h1 class="col-md-10">${sessionScope.memId}회원님&nbsp;개인정보</h1>
-							</c:if>
+							<h1 class="col-md-10">${sessionScope.memId}회원님&nbsp;개인정보</h1>
 						</div>
 					</div>
-					<form method="post" action="" name="userinput"
+					<form method="post" action="" name=""
 						onsubmit="return checkIt()">
 
 						<table width="600" border="1" cellspacing="0" cellpadding="3"
@@ -68,7 +66,7 @@
 							</tr>
 							<tr>
 								<td width="200">부석</td>
-								<td width="400">${department}</td>
+								<td width="400">${c.department}</td>
 							</tr>
 							<tr>
 								<td width="200">직책</td>
@@ -85,10 +83,18 @@
 
 							<tr>
 								<td width="200">등급</td>
-								<td width="400">${c.level}</td>
+								<td width="400">
+									<c:forEach var="d" items="${level}" >
+								 	  <div  value="${c.level}"> ${d.department} </div>
+									</c:forEach>
+								</td>
+								
+					
+								
 							<tr>
-								<td colspan="2" align="center" bgcolor="${value_c}">
-								<input type="button" value="수   정" onclick="javascript:window.location='/workdesk/member/modifyForm.do'"> 
+								<td colspan="2" align="center">
+								<input type="button" value="수   정"
+									onclick="javascript:window.location='/workdesk/member/modifyForm.do'">
 								</td>
 							</tr>
 

@@ -1,15 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <div class="col-md-2">
 	<ul class="nav nav-pills nav-stacked" id="nav">
-		
 		<li class="disabled"><a href="##">${sessionScope.memId}님&nbsp;방문중</a></li>
-		<li><a href="<%=request.getContextPath()%>/member/information.do">개인정보<span
+		<li><a href="<%=request.getContextPath()%>/member/information.do">사원카드<span
 				class="glyphicon glyphicon-pencil pull-right"></span></a></li>
 		<li><a href="<%=request.getContextPath()%>/member/sign.do">체크인/체크아옷<span
 				class="badge pull-right"></span></a></li>
-		<li><a href="<%=request.getContextPath()%>/member/signRecord.do">근태
+		<li><a href="<%=request.getContextPath()%>/member/attend.do">근태
 				사항<span class="badge pull-right"></span>
+		</a></li>
+		<li><a href="<%=request.getContextPath()%>/member/inputForm.do">회원등록<span
+				class="badge pull-right"></span>
 		</a></li>
 		<%--  <li><a href="<%=request.getContextPath()%>/staff/leave">휴가 신청<span class="badge pull-right"></span></a></li> --%>
 		<%--  <li><a href="<%=request.getContextPath()%>/staff/leaveRecord">휴가 기록<span class="badge pull-right"></span></a></li> --%>

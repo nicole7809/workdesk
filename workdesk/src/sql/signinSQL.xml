@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="signDataBean">
+		<insert id="insertSignrecord" parameterType="signDTO">
+			insert into
+			SIGNRECORD
+			values (#{id},#{signin},#{signout},#{name},
+			#{attend_status})
+		</insert>
+		<select id="querySignDataBeanById" resultType="signDTO"
+			parameterType="String">
+			select * from SIGNRECORD where id=#{value,jdbcType=VARCHAR}
+		</select>
+	</mapper> -->

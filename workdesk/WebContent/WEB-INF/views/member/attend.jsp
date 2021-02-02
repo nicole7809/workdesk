@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>체크인/체크아웃</title>
+<title>근태 사항</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
@@ -33,19 +33,30 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="row">
-							<h2 class="col-md-10">체크인/체크아웃</h2>
+							<h1 class="col-md-5">근태 사항</h1>
 						</div>
 					</div>
-					<br> <br>
-					<p>
-						<input id="sign_in" type="button" class="btn btn-primary btn-lg"
-							style="margin-left: 50px;" value="체크인"
-							onclick="javascript:window.location='/workdesk/member/signin.do'">
-						<input id="sign_out" type="button" class="btn btn-primary btn-lg"
-							style="margin-left: 260px;" value="체크아웃"
-							onclick="javascript:window.location='/workdesk/member/signout.do'">
-
-					</p>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>체크인 시간</th>
+								<th>체크옷 시간</th>
+								<th>체크 상태</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+						<c:forEach var="article" items="${id}" >  <!-- items 뭘로 써야하는지?? -->
+			 				<tr>
+								<td width="400">${article.signin}</td>
+								<td width="400">${article.signout}</td>
+								<td width="150">${article.attend_status}</td>
+							</tr>
+						</c:forEach>
+						
+						
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -56,4 +67,6 @@
 		</div>
 	</div>
 </body>
+
+
 </html>

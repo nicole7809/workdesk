@@ -1,19 +1,16 @@
 package workdesk.member.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
-
-
 
 public class MemberDataBean {
 	private String id;
 	private String password;
 	private String name;
-	private Timestamp birthday;
+	private String birthday;
 	private String department;
 	private String job;
-	private Timestamp join_date;
-	private Timestamp end_date;
+	private String join_date;
+	private String end_date;
 	private int level;
 	private String email;
 
@@ -41,13 +38,12 @@ public class MemberDataBean {
 		this.name = name;
 	}
 
-	
 
-	public Timestamp getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Timestamp birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -67,19 +63,19 @@ public class MemberDataBean {
 		this.job = job;
 	}
 
-	public Timestamp getJoin_date() {
+	public String getJoin_date() {
 		return join_date;
 	}
 
-	public void setJoin_date(Timestamp join_date) {
+	public void setJoin_date(String join_date) {
 		this.join_date = join_date;
 	}
 
-	public Timestamp getEnd_date() {
+	public String getEnd_date() {
 		return end_date;
 	}
 
-	public void setEnd_date(Timestamp end_date) {
+	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
 
