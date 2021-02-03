@@ -34,6 +34,13 @@ public interface MemberDBService {
 	//public int towork(SignDataBean signin)throws Exception;
 
 	public List<MemberDataBean> memberAll();
+	
+	public MemberDataBean myLevel(String id);
+	
+	public List<SignDataBean> statusAll();
+	
+	public List<SignDataBean> myStatus(String id);
 
+	public List<SignDataBean> getSignrecord(String id) throws Exception;
 
 }

@@ -33,8 +33,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<c:if test="${sessionScope.memId != null}">
-								<h1 class="col-md-10">${sessionScope.memId}회원님 &nbsp;
-									개인정보</h1>
+								<h1 class="col-md-10">${sessionScope.memId}회원님&nbsp; 개인정보</h1>
 							</c:if>
 						</div>
 					</div>
@@ -44,21 +43,19 @@
 						<table width="600" border="1" cellspacing="0" cellpadding="3"
 							align="center">
 							<tr>
-								<td colspan="2" height="39" bgcolor="" align="center">
-								<font size="+1"><b>회원 정보수정</b></font>
+								<td colspan="2" height="39" bgcolor="" align="center"><font
+									size="+1"><b>회원 정보수정</b></font>
 							</tr>
 							<tr>
 								<td width="200">사용자 ID</td>
 								<td width="400">
-									<input type="hidden" name="id" value="${c.id}" />
-								</td>
+								<input type="hidden" name="id"
+									value="${c.id}" />${c.id}</td>
 							</tr>
 							<tr>
 								<td width="200">비밀번호</td>
-								<td width="400">
-								<input type="password" name="password"
-									size="10" maxlength="10" value="${c.password}">
-								</td>
+								<td width="400"><input type="password" name="password"
+									size="10" maxlength="10" value="${c.password}"></td>
 							</tr>
 							<tr>
 								<td width="200">이름</td>
@@ -66,17 +63,13 @@
 							</tr>
 							<tr>
 								<td width="200">생년월일</td>
-								<td width="400">
-								<input type="date" name="birthday"
-									size="10" maxlength="10" value="${c.birthday}">
-								</td>
+								<td width="400"><input type="date" name="birthday"
+									size="10" maxlength="10" value="${c.birthday}"></td>
 							</tr>
 							<tr>
 								<td width="200">이메일</td>
-								<td width="400">
-								<input type="email" name="email"
-									size="10" maxlength="50" value="${c.email}">
-								</td>
+								<td width="400"><input type="email" name="email" size="10"
+									maxlength="50" value="${c.email}"></td>
 							</tr>
 							<tr>
 								<td width="200">부석</td>
@@ -95,12 +88,17 @@
 								<td width="400">${c.end_date}</td>
 							</tr>
 
+							
 							<tr>
 								<td width="200">등급</td>
-								<td width="400">${c.level}</td>
+								<td width="400">
+									
+								 	  <div  value="${c.level}"> ${mylevel.department} </div>
+							
+								</td>
+									
 								
 							<tr>
-							
 							<tr>
 								<td colspan="2" align="center" bgcolor="${value_c}"><input
 									type="submit" name="modify" value="수   정"> <input

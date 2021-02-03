@@ -72,10 +72,31 @@ public class MemberDBServiceMybatis implements MemberDBService {
 		return dao.selectList("member.querySignDataBeanById", id);
 	}
 
-	@Override
+	@Override 
 	public List<MemberDataBean> memberAll() {
 		return dao.selectList("member.all_level");
 	}
+	
+	@Override 
+	public MemberDataBean myLevel(String id) {
+		return dao.selectOne("member.my_level",id);
+	}
+	
+	@Override 
+	public List<SignDataBean> myStatus(String id) {
+		return dao.selectList("member.my_status",id);
+	}
+
+	@Override
+	public List<SignDataBean> getSignrecord(String id)throws Exception {
+		return dao.selectList("member.sign", id);
+	}
+
+	@Override
+	public List<SignDataBean> statusAll() {
+		return dao.selectList("member.all_status");
+	}
+	
 
 	
 }

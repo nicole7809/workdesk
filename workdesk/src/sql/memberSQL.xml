@@ -3,7 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-
+	<!-- <resultMap id="queryForListMap" type="workdesk.member.model.MemberDataBean">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
+    </resultMap> -->
 	<!-- insert -->
 	<insert id="insertMember" parameterType="memberDTO">
 		insert into MEMBER
@@ -32,15 +36,21 @@
 	</select>
 
 	<select id="my_level" resultType="memberDTO">
-		SELECT * FROM (SELECT * FROM
-		MEMBER where id=#{id}) m ,
-		member_level ml WHERE m."LEVEL" = ml."LEVEL"
+		SELECT MEMBER.id as id ,MEMBER.name as name ,member_level.DEPARTMENT as department FROM MEMBER 
+		LEFT JOIN member_level ON MEMBER."LEVEL" = member_level."LEVEL" 
+		where MEMBER.id=#{id,jdbcType=VARCHAR}
 	</select>
 
 
 	<!-- 전체 근태상태 -->
-	<select id="all_status" resultType="memberDTO">
-		select * from all_status
+	<select id="all_status" resultType="signDTO" parameterType="signDTO">
+		select * from attend_status
+	</select>
+	
+	<select id="my_status" resultType="signDTO" parameterType="signDTO">	
+		SELECT SIGNRECORD.id as id ,SIGNRECORD.signin as signin ,SIGNRECORD.signout as signout, ATTEND_STATUS.ATTEND_STATUS as ATTEND_STATUS FROM SIGNRECORD 
+		LEFT JOIN ATTEND_STATUS ON SIGNRECORD."ATTEND_STATUS" = ATTEND_STATUS.SEQ 
+		where SIGNRECORD.id=#{id,jdbcType=VARCHAR}
 	</select>
 
 
@@ -53,6 +63,11 @@
 		</set>
 		where id=#{id}
 	</update>
+
+	<select id="sign" resultType="signDTO" parameterType="String">
+		select * from SIGNRECORD where id=#{value,jdbcType=VARCHAR}
+	</select>
+	
 
 	<!-- insert 근택테이블 -->
 	<insert id="insertSignrecord" parameterType="signDTO">
@@ -94,9 +109,10 @@
 
 
 
+
 	<select id="querySignDataBeanById" resultType="signDTO"
 		parameterType="String">
-		select * from SIGNRECORD where id=#{value}
+		select * from SIGNRECORD where id=#{value,jdbcType=VARCHAR}
 	</select>
 
 

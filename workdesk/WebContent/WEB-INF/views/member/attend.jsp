@@ -34,7 +34,14 @@
 					<div class="panel-heading">
 						<div class="row">
 							<h1 class="col-md-5">근태 사항</h1>
-						</div>
+						
+						<input id="sign_in" type="button" class="btn btn-primary btn-lg"
+							style="margin-left: 20px;" value="체크인"
+							onclick="javascript:window.location='/workdesk/member/signin.do'">
+						<input id="sign_out" type="button" class="btn btn-primary btn-lg"
+							style="margin-left: 100px;" value="체크아웃"
+							onclick="javascript:window.location='/workdesk/member/signout.do'">
+					</div>
 					</div>
 					<table class="table table-bordered">
 						<thead>
@@ -46,15 +53,16 @@
 						</thead>
 						<tbody>
 						
-						<c:forEach var="article" items="${id}" >  <!-- items 뭘로 써야하는지?? -->
+						<c:forEach var="my" items="${mystatus}" >  
 			 				<tr>
-								<td width="400">${article.signin}</td>
-								<td width="400">${article.signout}</td>
-								<td width="150">${article.attend_status}</td>
+								<td width="400">${my.signin}</td>
+								<td width="400">${my.signout}</td>							
+								<td width="150" value="${my.attend_status}">
+									 ${my.attend_status}
+								</td>
 							</tr>
 						</c:forEach>
-						
-						
+							
 						</tbody>
 					</table>
 				</div>

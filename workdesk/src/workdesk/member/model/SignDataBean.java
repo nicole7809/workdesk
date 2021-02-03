@@ -7,7 +7,8 @@ public class SignDataBean {
 	private Timestamp signin;
 	private Timestamp signout;
 	private String name;
-	private int attend_status;
+	private String attend_status;
+	
 
 	public String getName() {
 		return name;
@@ -17,11 +18,13 @@ public class SignDataBean {
 		this.name = name;
 	}
 
-	public int getAttend_status() {
+	public String getAttend_status() {
 		return attend_status;
 	}
+	
 
-	public void setAttend_status(int attend_status) {
+
+	public void setAttend_status(String attend_status) {
 		this.attend_status = attend_status;
 	}
 
@@ -48,5 +51,9 @@ public class SignDataBean {
 	public void setSignout(Timestamp signout) {
 		this.signout = signout;
 	}
+
+	
+	
+
 
 }

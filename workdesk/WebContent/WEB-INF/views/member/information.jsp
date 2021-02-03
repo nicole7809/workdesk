@@ -84,12 +84,8 @@
 							<tr>
 								<td width="200">등급</td>
 								<td width="400">
-									<c:forEach var="d" items="${level}" >
-								 	  <div  value="${c.level}"> ${d.department} </div>
-									</c:forEach>
+								 	  <div value="${c.level}"> ${mylevel.department}</div>
 								</td>
-									
-								
 							<tr>
 								<td colspan="2" align="center">
 								<input type="button" value="수   정"
