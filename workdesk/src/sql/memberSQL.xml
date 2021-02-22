@@ -36,7 +36,8 @@
 	</select>
 
 	<select id="my_level" resultType="memberDTO">
-		SELECT MEMBER.id as id ,MEMBER.name as name ,member_level.DEPARTMENT as department FROM MEMBER 
+		SELECT MEMBER.id as id ,MEMBER.name as name ,
+		member_level.DEPARTMENT as department FROM MEMBER 
 		LEFT JOIN member_level ON MEMBER."LEVEL" = member_level."LEVEL" 
 		where MEMBER.id=#{id,jdbcType=VARCHAR}
 	</select>
@@ -48,7 +49,9 @@
 	</select>
 	
 	<select id="my_status" resultType="signDTO" parameterType="signDTO">	
-		SELECT SIGNRECORD.id as id ,SIGNRECORD.signin as signin ,SIGNRECORD.signout as signout, ATTEND_STATUS.ATTEND_STATUS as ATTEND_STATUS FROM SIGNRECORD 
+		SELECT SIGNRECORD.id as id ,SIGNRECORD.signin as signin ,
+		SIGNRECORD.signout as signout, 
+		ATTEND_STATUS.ATTEND_STATUS as ATTEND_STATUS FROM SIGNRECORD 
 		LEFT JOIN ATTEND_STATUS ON SIGNRECORD."ATTEND_STATUS" = ATTEND_STATUS.SEQ 
 		where SIGNRECORD.id=#{id,jdbcType=VARCHAR}
 	</select>
@@ -91,29 +94,36 @@
 
 	<update id="updateSignout" parameterType="signDTO">
 		update signrecord set
-		signout = sysdate where id=#{id} and
-		to_char(sysdate,'YYYY-MM-DD') =
-		TO_CHAR(signin ,'YYYY-MM-DD')
+		signout = sysdate ,attend_status=#{attend_status} where id=#{id,jdbcType=VARCHAR} 
+		and to_char(sysdate,'YYYY-MM-DD') = TO_CHAR(signin ,'YYYY-MM-DD')
 	</update>
 
 	<!-- 정상출근 -->
-	<!-- <select id="towork" resultType="signDTO" parameterType="signDTO"> SELECT 
-		* FROM SIGNRECORD WHERE id=#{id} AND TO_CHAR(to_date('09:00','hh24:mi'),'hh24:mi') 
-		> to_char(SIGNIN,'hh24:mi') </select> -->
+	<select id="towork" resultType="int" parameterType="signDTO"> 
+		SELECT ATTEND_STATUS FROM
+		(SELECT * FROM SIGNRECORD WHERE id=#{id,jdbcType=VARCHAR} AND TO_CHAR(sysdate,'YYYYMMDD')
+			= TO_CHAR(signin,'YYYYMMDD'))
+		WHERE id=#{id,jdbcType=VARCHAR} AND TO_CHAR
+		(to_date('09:00','hh24:mi'),'hh24:mi') >= to_char(SIGNOUT,'hh24:mi') 
+	</select>
 
-	<!-- 정상퇴근 -->
-	<!-- <select id="offwork" resultType="signDTO" parameterType="signDTO"> 
-		SELECT * FROM SIGNRECORD WHERE id=#{id} AND TO_CHAR(to_date('18:00','hh24:mi'),'hh24:mi') 
-		< to_char(SIGNOUT,'hh24:mi') </select> -->
+	<!-- 조퇴 -->
+	<select id="offwork" resultType="int" parameterType="signDTO"> 
+		SELECT ATTEND_STATUS FROM
+		(SELECT * FROM SIGNRECORD WHERE id=#{id,jdbcType=VARCHAR} AND TO_CHAR(sysdate,'YYYYMMDD')  
+			= TO_CHAR(signin,'YYYYMMDD'))
+		WHERE id=#{id,jdbcType=VARCHAR} AND 
+		to_char(SIGNOUT,'hh24:mi') >= TO_CHAR(to_date('23:00','hh24:mi'),'hh24:mi')
+	</select>
 
 
 
 
 
-	<select id="querySignDataBeanById" resultType="signDTO"
+	<!-- <select id="querySignDataBeanById" resultType="signDTO"
 		parameterType="String">
 		select * from SIGNRECORD where id=#{value,jdbcType=VARCHAR}
-	</select>
+	</select> -->
 
 
 

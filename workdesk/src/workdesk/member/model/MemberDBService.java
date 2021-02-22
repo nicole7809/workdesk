@@ -42,5 +42,8 @@ public interface MemberDBService {
 	public List<SignDataBean> myStatus(String id);
 
 	public List<SignDataBean> getSignrecord(String id) throws Exception;
-
+	
+	public Integer towork(SignDataBean status) throws Exception;
+	
+	public Integer offwork(SignDataBean status) throws Exception;
 }

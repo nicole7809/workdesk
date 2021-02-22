@@ -96,7 +96,16 @@ public class MemberDBServiceMybatis implements MemberDBService {
 	public List<SignDataBean> statusAll() {
 		return dao.selectList("member.all_status");
 	}
-	
 
+	@Override
+	public Integer towork(SignDataBean status) throws Exception {
+		return dao.selectOne("member.towork", status);
+	
+	}
+
+	@Override
+	public Integer offwork(SignDataBean status) throws Exception {
+		return dao.selectOne("member.offwork", status);
+	}
 	
 }
